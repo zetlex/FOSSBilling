@@ -1,9 +1,10 @@
-<div id="close-cookie-consent-block" style="display:none; z-index: 101; opacity: 0.8; top: 0; left: 0; right: 0; margin-bottom: 5px; background: #fde073; text-align: center; line-height: 2.5; overflow: hidden; -webkit-box-shadow: 0 0 5px black; -moz-box-shadow: 0 0 5px black; box-shadow: 0 0 5px black;">
+{#<div id="close-cookie-consent-block" style="display:none; z-index: 101; opacity: 0.8; top: 0; left: 0; right: 0; margin-bottom: 5px; background: #fde073; text-align: center; line-height: 2.5; overflow: hidden; -webkit-box-shadow: 0 0 5px black; -moz-box-shadow: 0 0 5px black; box-shadow: 0 0 5px black;">
         {{ guest.cookieconsent_message }}
     <button id="close-cookie-consent-btn" style="padding: 5px; cursor: pointer; background: rgba(0, 0, 0, 0); float:right; border: 0; -webkit-appearance: none; font-size: 20px; font-weight: bold; line-height: 0.8em; color: #000; text-shadow: 0 1px 0 #FFF; opacity: .4; filter: alpha(opacity=20);">Close &times;</button>
-</div>
+</div>#}
 
-<script type="text/javascript">
+{# I have no idea how I implement this feature, so it doesn't ask everytime. #}
+{#<script type="text/javascript">
     if (localStorage.getItem("cookie-consent") != 1) {
         document.querySelector('#close-cookie-consent-block').style.display = '';
     }
@@ -12,4 +13,69 @@
         localStorage.setItem('cookie-consent', 1);
         document.querySelector('#close-cookie-consent-block').style.display = 'none';
     });
+</script> #}
+
+<script>
+$("#cookie-popup button").click(function() {
+  $("#cookie-popup").fadeOut();
+});
 </script>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<div id="cookie-popup">
+  <p>COOKIE POLICY</p>
+  <p>{{ guest.cookieconsent_message }}</p>
+  <button>CLOSE</button>
+</div>
+
+<style>
+body {
+  background-color: #F9F9F9;
+}
+
+#cookie-popup {
+  position: fixed;
+  z-index: 9999;
+  right: 30px;
+  bottom: 30px;
+  width: 330px;
+  padding: 20px 30px;
+  box-sizing: border-box;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 15px;
+}
+
+#cookie-popup p:first-child {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  color: #fff;
+  font-weight: 700;
+  font-size:18px;
+  margin-bottom: 5px;
+}
+
+#cookie-popup p:nth-child(2) {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: normal!important;
+}
+
+#cookie-popup button {
+  width: 50%;
+  font-size: 16px;
+  padding: 8px 0;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
+  background-color: #111;
+  border: 0px;
+  border-color: #111;
+  border-radius: 5px;
+}
+</style>
